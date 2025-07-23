@@ -1,2 +1,4 @@
 .idea/
 .env
+data/sec_cleaned/*.csv
+data/*.json
