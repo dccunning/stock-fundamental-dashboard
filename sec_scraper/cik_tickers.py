@@ -4,20 +4,29 @@ import requests
 from pathlib import Path
 
 
-def update_ticker_mapping(cache_path=None):
+def update_ticker_mapping(cache_filename=os.getenv("TICKER_CIK_CACHE"), user_agent=os.getenv("WEB_USER_AGENT")):
     """
     Fetch the latest ticker–CIK mapping from the SEC and save it to a local JSON file.
-    """
-    if cache_path is None:
-        cache_path = os.getenv("TICKER_CIK_CACHE")
 
-    cache_path = Path(cache_path)
+    :param cache_filename: Filename of the local json
+    :param user_agent: User Agent to access the SEC website
+    :return: Dict of updated ticker–CIK mappings
+    """
+    if not cache_filename:
+        raise ValueError("cache_filename env variable is not set")
+
+    if not user_agent:
+        raise ValueError("WEB_USER_AGENT env variable is not set")
+
+    current_dir = Path(__file__).resolve().parent.parent
+    cache_path = current_dir / cache_filename
 
     url = "https://www.sec.gov/files/company_tickers_exchange.json"
     headers = {
-        "User-Agent": os.getenv("WEB_USER_AGENT"),
+        "User-Agent": user_agent,
         "Accept": "application/json",
     }
+
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
     data = resp.json()
@@ -35,20 +44,23 @@ def update_ticker_mapping(cache_path=None):
     return mapping
 
 
-def load_ticker_mapping(cache_path=os.getenv("TICKER_CIK_CACHE")):
+def load_ticker_mapping(cache_filename=os.getenv("TICKER_CIK_CACHE")):
     """
     Load the ticker–CIK mapping from a local JSON cache file.
-    """
-    if cache_path is None:
-        cache_path = os.getenv("TICKER_CIK_CACHE", "ticker_cik.json")
 
-    if not os.path.isabs(cache_path):
-        parent_dir = os.path.dirname(os.getcwd())
-        cache_path = os.path.join(parent_dir, cache_path)
+    :param cache_filename: Filename of the local JSON cache
+    :return: Dict of ticker–CIK mappings
+    """
+    if not cache_filename:
+        raise ValueError("TICKER_CIK_CACHE env variable is not set")
+
+    current_dir = Path(__file__).resolve().parent.parent
+    cache_path = current_dir / cache_filename
 
     with open(cache_path, "r") as f:
         return json.load(f)
 
 
 if __name__ == "__main__":
-    print(load_ticker_mapping())
+    update_ticker_mapping("data/ticker_cik_cache.json")
+    print("Ticker mappings updated")

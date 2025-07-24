@@ -117,3 +117,4 @@ def save_all_ticker_data(tickers: List[str]):
 if __name__ == "__main__":
     from sec_scraper.universe import UNIVERSE
     save_all_ticker_data(UNIVERSE)
+    print("Universe financials updated")

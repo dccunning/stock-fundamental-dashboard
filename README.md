@@ -24,13 +24,23 @@ main.py               # Streamlit app entry point
 
 ## Open Dashboard
 
-1. Install dependencies:
+1. Update CIK-tickers data. Run: 
+```
+sec_scraper/cik_tickers.py
+```
+
+2. Update SEC financials. Run:
+```
+sec_scraper/sec_financials.py
+```
+
+3. Install dependencies:
 
 ```
 pip install -r requirements.txt
 ```
 
-2. Run:
+4. Run:
 ```
 streamlit run main.py
 ```
