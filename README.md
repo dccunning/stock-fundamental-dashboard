@@ -22,7 +22,7 @@ streamlit_dashboard/  # Reusable dashboard components (UI, helpers, constants)
 main.py               # Streamlit app entry point
 ```
 
-## Open Dashboard
+## Start Dashboard
 
 1. Update CIK-tickers data. Run: 
 ```
