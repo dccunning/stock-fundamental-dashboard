@@ -11,6 +11,13 @@ Visualize and identify undervalued stocks using valuation ratios and trends from
 - View charts of a stock with the TradingView integration
 
 
+## Tab Screenshots
+
+<img width="671" height="420" alt="Screenshot 2025-07-24 at 8 23 45 AM" src="https://github.com/user-attachments/assets/35fbfc1c-0b29-42ee-aa73-25105d9df1ab" />
+<img width="671" height="420" alt="Screenshot 2025-07-24 at 8 24 06 AM" src="https://github.com/user-attachments/assets/b683c730-f367-4812-8a0a-d143a76f953a" />
+<img width="671" height="429" alt="Screenshot 2025-07-24 at 8 24 25 AM" src="https://github.com/user-attachments/assets/9c680d4d-c7c0-4f7d-94af-aad1f11367c7" />
+
+
 ## Project Structure
 
 ```
